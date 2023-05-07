@@ -1,6 +1,10 @@
+import ClientOnly from './components/ClientOnly'
+import Modal from './components/modals/Modal'
+import RegisterModal from './components/modals/RegisterModal'
 import Navbar from './components/navbar/Navbar'
 import './globals.css'
 import { Nunito } from "next/font/google"
+import ToastProvider from './providers/ToastProvider'
 
 export const metadata = {
   title: 'Fleet',
@@ -16,7 +20,11 @@ export default function RootLayout({ children }: { children: React.ReactNode })
   return (
     <html lang="en">
       <body className={font.className}>
-        <Navbar />
+        <ClientOnly>
+          <ToastProvider />
+          <RegisterModal />
+          <Navbar />
+        </ClientOnly>
         {children}
       </body>
     </html>
